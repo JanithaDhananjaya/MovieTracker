@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SearchMovieActivity">
+
+    <EditText
+        android:id="@+id/txt_search"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:ems="10"
+        android:hint="Search Movie"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.068" />
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="639dp"
+        android:layout_toEndOf="@+id/txt_search"
+        android:onClick="lookUphMovies"
+        android:text="Look Up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_search"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.079" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_movie_list"
+        android:layout_width="377dp"
+        android:layout_height="529dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_search"
+        app:layout_constraintVertical_bias="0.874" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
