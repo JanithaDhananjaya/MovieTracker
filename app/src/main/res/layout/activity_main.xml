@@ -22,6 +22,16 @@
         app:layout_constraintVertical_bias="0.107" />
 
     <Button
+        android:id="@+id/btn_fav_movies"
+        android:layout_width="410dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="12dp"
+        android:onClick="favouriteMovies"
+        android:text="Favourites"
+        app:layout_constraintTop_toBottomOf="@+id/btn_display_movies"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
         android:id="@+id/btn_reg_movie"
         android:layout_width="411dp"
         android:layout_height="68dp"
@@ -29,63 +39,47 @@
         android:text="Register Movie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269"
+        app:layout_constraintVertical_bias="0.325"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btn_display_movies"
-        android:layout_width="224dp"
-        android:layout_height="44dp"
+        android:layout_width="410dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
         android:onClick="displayMovies"
         android:text="Display Movies"
-        app:layout_constraintBottom_toTopOf="@+id/btn_fav_movies"
         app:layout_constraintTop_toBottomOf="@+id/btn_reg_movie"
-        tools:layout_editor_absoluteX="51dp" />
-
-    <Button
-        android:id="@+id/btn_fav_movies"
-        android:layout_width="225dp"
-        android:layout_height="47dp"
-        android:text="Favourites"
-        app:layout_constraintBottom_toTopOf="@+id/btn_edit_movies"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_display_movies"
-        android:onClick="favouriteMovies"/>
-
-    <Button
-        android:id="@+id/btn_edit_movies"
-        android:layout_width="217dp"
-        android:layout_height="46dp"
-        android:text="Edit Movies"
-        app:layout_constraintBottom_toTopOf="@+id/btn_search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_fav_movies"
-        android:onClick="editMovies"/>
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btn_search"
-        android:layout_width="221dp"
-        android:layout_height="48dp"
+        android:layout_width="415dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:onClick="searchMovies"
         android:text="Search"
-        app:layout_constraintBottom_toTopOf="@+id/btn_ratings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_edit_movies"
-        android:onClick="searchMovies"/>
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btn_ratings"
-        android:layout_width="225dp"
-        android:layout_height="50dp"
+        android:layout_width="411dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:onClick="ratingMovies"
         android:text="Ratings"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_search"
-        android:onClick="ratingMovies"/>
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/btn_edit_movies"
+        android:layout_width="411dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:onClick="editMovies"
+        android:text="Edit Movies"
+        app:layout_constraintTop_toBottomOf="@+id/btn_fav_movies"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

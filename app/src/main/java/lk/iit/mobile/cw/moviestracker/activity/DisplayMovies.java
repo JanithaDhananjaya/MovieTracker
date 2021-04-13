@@ -55,15 +55,13 @@ public class DisplayMovies extends AppCompatActivity {
     }
 
     public void addToFavourite(View view) {
-        Log.i("size ", String.valueOf(selectedFavouriteMovies.size()));
-        Log.i("selected fav list ", selectedFavouriteMovies.toString());
+        boolean status = movieData.markFavouriteMovies(selectedFavouriteMovies);
 
-        for (Movie movie : selectedFavouriteMovies) {
-            movie.setFavouriteStatus(1);
-
-            movieData.updateMovie(movie);
-        }
-
+      if (status){
+          Toast.makeText(getApplicationContext(), selectedFavouriteMovies.size() + " Movies added to Favourite List", Toast.LENGTH_SHORT).show();
+          finish();
+          startActivity(getIntent());
+      }
     }
 
     class RecyclerViewDisplayAdapter extends RecyclerView.Adapter<RecyclerViewDisplayAdapter.ViewHolder> {

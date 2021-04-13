@@ -18,6 +18,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -49,15 +50,12 @@ public class FavouriteMovies extends AppCompatActivity {
     }
 
     public void removeFromFavourite(View view) {
-        Log.i("size ", String.valueOf(removedSelectedFavMovies.size()));
-        Log.i("selected fav list ", removedSelectedFavMovies.toString());
-
-//        for (Movie movie : removedSelectedFavMovies) {
-//            movie.setFavouriteStatus(1);
-//
-//            movieData.updateMovie(movie);
-//        }
-
+        boolean status = movieData.removeFromFavouriteList(removedSelectedFavMovies);
+        if (status) {
+            Toast.makeText(getApplicationContext(), removedSelectedFavMovies.size() + " Movies removed From Favourite List", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(getIntent());
+        }
     }
 
     class RecyclerViewFavouriteAdapter extends RecyclerView.Adapter<RecyclerViewFavouriteAdapter.ViewHolder> {
@@ -89,7 +87,7 @@ public class FavouriteMovies extends AppCompatActivity {
                 public void onClick(View v) {
                     boolean isChecked = ((CheckBox) v).isChecked();
                     Movie removeMovie = movieList.get(position);
-                    if (isChecked) {
+                    if (!isChecked) {
                         if (!removedSelectedFavMovies.contains(removeMovie)) {
                             removedSelectedFavMovies.add(removeMovie);
                         }

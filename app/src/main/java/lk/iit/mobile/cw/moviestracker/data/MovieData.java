@@ -1,5 +1,6 @@
 package lk.iit.mobile.cw.moviestracker.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -78,6 +79,30 @@ public class MovieData extends SQLiteOpenHelper {
         database.close();
     }
 
+    public boolean markFavouriteMovies(ArrayList<Movie> favMovieList) {
+        database = getWritableDatabase();
+
+        for (Movie movie : favMovieList) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("favouriteStatus", 1);
+            database.update(TABLE_NAME, contentValues, "_ID = ?", new String[]{String.valueOf(movie.getMovieId())});
+        }
+
+        return true;
+    }
+
+    public boolean removeFromFavouriteList(ArrayList<Movie> removeMovieList) {
+        database = getWritableDatabase();
+
+        for (Movie movie : removeMovieList) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("favouriteStatus", 0);
+            database.update(TABLE_NAME, contentValues, "_ID = ?", new String[]{String.valueOf(movie.getMovieId())});
+        }
+
+        return true;
+    }
+
     public ArrayList<Movie> getAllMovies() {
         database = getReadableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME, null);
@@ -103,28 +128,24 @@ public class MovieData extends SQLiteOpenHelper {
     }
 
     public ArrayList<Movie> getAllFavouriteMovies() {
-        StringBuilder builder = new StringBuilder();
         database = getReadableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE favouriteStatus =?", new String[]{"1"});
+        Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE favouriteStatus =1", null);
         ArrayList<Movie> movieList = new ArrayList<>();
         while (cursor.moveToNext()) {
-            new Movie(
-                    cursor.getInt(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getString(4),
-                    cursor.getString(5),
-                    cursor.getString(6),
-                    cursor.getInt(7)
-            );
+            movieList.add(
+                    new Movie(
+                            cursor.getInt(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getString(4),
+                            cursor.getString(5),
+                            cursor.getString(6),
+                            cursor.getInt(7)
+                    ));
         }
         Log.i("Fav movie lsit", movieList.toString());
-        if (builder.length() > 0) {
-            return movieList;
-        } else {
-            return null;
-        }
+        return movieList;
     }
 
     public ArrayList<Movie> searchMovies(String keyword) {
