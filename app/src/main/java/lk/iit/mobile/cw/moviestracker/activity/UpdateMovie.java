@@ -3,6 +3,7 @@ package lk.iit.mobile.cw.moviestracker.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -62,7 +63,6 @@ public class UpdateMovie extends AppCompatActivity {
         txt_director.setText(selectedMovie[3]);
         txt_casts.setText(selectedMovie[4]);
         ratingBar.setRating(Float.parseFloat(selectedMovie[5]));
-        Log.i("Rating", selectedMovie[5]);
         txt_review.setText(selectedMovie[6]);
         if (selectedMovie[7].equals("0")) {
             not_fav.setChecked(true);
@@ -76,6 +76,26 @@ public class UpdateMovie extends AppCompatActivity {
     public void updateMovie(View v) {
         int selectedId = fav_or_not_fav.getCheckedRadioButtonId();
         fav_or_not_fav_RadioButton = (RadioButton) findViewById(selectedId);
+
+        String title = txt_title.getText().toString();
+        if (title.isEmpty() || title == null) {
+            Toast.makeText(getApplicationContext(), "Movie Title cannot be empty", Toast.LENGTH_SHORT).show();
+            txt_title.getBackground().setColorFilter(getResources().getColor(R.color.errorColor), PorterDuff.Mode.SRC_ATOP);
+            return;
+        }
+
+        String year = txt_year.getText().toString();
+        if (year.isEmpty() || Integer.parseInt(year) < 1895) {
+            Toast.makeText(getApplicationContext(), "Please enter a year after 1895", Toast.LENGTH_SHORT).show();
+            txt_year.getBackground().setColorFilter(getResources().getColor(R.color.errorColor), PorterDuff.Mode.SRC_ATOP);
+            return;
+        }
+        String director = txt_director.getText().toString();
+        if (director.isEmpty() || director == null) {
+            Toast.makeText(getApplicationContext(), "Director cannot be empty", Toast.LENGTH_SHORT).show();
+            txt_director.getBackground().setColorFilter(getResources().getColor(R.color.errorColor), PorterDuff.Mode.SRC_ATOP);
+            return;
+        }
 
         movieData.updateMovie(
                 new Movie(

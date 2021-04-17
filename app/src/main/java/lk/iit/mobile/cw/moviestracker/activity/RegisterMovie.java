@@ -3,7 +3,10 @@ package lk.iit.mobile.cw.moviestracker.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,15 +43,50 @@ public class RegisterMovie extends AppCompatActivity {
         txt_review = findViewById(R.id.txt_review);
         btn_register = findViewById(R.id.btn_register);
 
+        txt_rating.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                if (Integer.parseInt(txt_rating.getText().toString()) > 10) {
+                    Toast.makeText(getApplicationContext(), "Rating should be in 1 - 10 range", Toast.LENGTH_SHORT).show();
+                    txt_rating.getBackground().setColorFilter(getResources().getColor(R.color.errorColor), PorterDuff.Mode.SRC_ATOP);
+                    return;
+                }
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
+
         movieData = new MovieData(this);
     }
 
     public void saveMovie(View view) {
         String title = txt_title.getText().toString();
+        if (title.isEmpty() || title == null) {
+            Toast.makeText(getApplicationContext(), "Movie Title cannot be empty", Toast.LENGTH_SHORT).show();
+            txt_title.getBackground().setColorFilter(getResources().getColor(R.color.errorColor), PorterDuff.Mode.SRC_ATOP);
+            return;
+        }
+
         String year = txt_year.getText().toString();
+        if (year.isEmpty() || Integer.parseInt(year) < 1895) {
+            Toast.makeText(getApplicationContext(), "Please enter a year after 1895", Toast.LENGTH_SHORT).show();
+            txt_year.getBackground().setColorFilter(getResources().getColor(R.color.errorColor), PorterDuff.Mode.SRC_ATOP);
+            return;
+        }
         String director = txt_director.getText().toString();
+        if (director.isEmpty() || director == null) {
+            Toast.makeText(getApplicationContext(), "Director cannot be empty", Toast.LENGTH_SHORT).show();
+            txt_director.getBackground().setColorFilter(getResources().getColor(R.color.errorColor), PorterDuff.Mode.SRC_ATOP);
+            return;
+        }
         String casts = txt_casts.getText().toString();
         String rating = txt_rating.getText().toString();
+        if (rating.isEmpty() || Integer.parseInt(rating) > 11) {
+            Toast.makeText(getApplicationContext(), "Rating should be in 1 - 10 range", Toast.LENGTH_SHORT).show();
+            txt_rating.getBackground().setColorFilter(getResources().getColor(R.color.errorColor), PorterDuff.Mode.SRC_ATOP);
+            return;
+        }
         String review = txt_review.getText().toString();
 
         boolean result = movieData.registerMovie(new Movie(

@@ -10,14 +10,16 @@
     <Button android:id="@+id/btn_add_favourite"
         android:onClick="addToFavourite"
         android:text="Add to favourites"
+        android:background="@drawable/rounded_corners"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/display_movies_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_width="390dp"
+        android:layout_height="592dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="11dp" />
 
 </RelativeLayout>

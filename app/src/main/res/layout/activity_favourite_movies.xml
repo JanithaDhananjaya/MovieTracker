@@ -10,6 +10,7 @@
     <Button android:id="@+id/btn_remove_favourite"
         android:text="Save"
         android:onClick="removeFromFavourite"
+        android:background="@drawable/rounded_corners"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"/>
